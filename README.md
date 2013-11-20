@@ -9,6 +9,7 @@ How to use
 * install node.js
 * clone this repo
 * Open cmd
+* copy the path
 * npm install -g grunt-cli
 * npm install grunt --save-dev
 * npm install
