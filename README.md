@@ -23,3 +23,12 @@ How to use
 6 npm install
 7 grunt jalan
 8 end :D
+
+* install node.js
+* clone this repo
+* Open cmd
+* npm install -g grunt-cli
+* npm install grunt --save-dev
+* npm install
+* grunt jalan
+* end :D
