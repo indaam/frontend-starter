@@ -5,7 +5,6 @@ Frontend starter use compass &amp; jade with grunt
 
 How to use
 -----------
-
 * install node.js
 * clone this repo
 * Open cmd
