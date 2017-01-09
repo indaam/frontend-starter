@@ -1,4 +1,10 @@
 var TOOLS = (function() {
+
+	/**
+	* Param to Object
+	* @param {String} str 
+	* @return {Object} _paramsToJSON
+	*/
 	var _paramsToJSON = function(str) {
 		var pairs = str.split('&');
 		var result = {};
@@ -19,6 +25,12 @@ var TOOLS = (function() {
 		return( result );
 	}
 
+	/**
+	* Get width from all child
+	* @param {Object} Jquery object selector 
+	* @param {String} child 
+	* @return {Number} _setWidthFromChild
+	*/
 	var _setWidthFromChild = function(selector, child){
 		var width = 0;
 		var child_list = selector.find(child);
@@ -28,6 +40,11 @@ var TOOLS = (function() {
 		return width
 	}
 
+	/**
+	* Check Number ODD or Even
+	* @param {Number} n
+	* @return {String} _oddEven
+	*/
 	var _oddEven = function(n){
 		if ( n % 2 == 0 ) {
 			return 'even'
