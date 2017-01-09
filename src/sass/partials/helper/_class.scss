@@ -1,0 +1,181 @@
+/*
+|--------------------------------------------------------------------------
+| CSS Class transition
+|--------------------------------------------------------------------------
+*/
+@for $i from 0 through 20 {
+  .trans-#{$i} {
+  		@include transition(all ease 0.1s * $i)
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| CSS Class transition Delay
+|--------------------------------------------------------------------------
+*/
+@for $i from 0 through 20 {
+  .delay-#{$i} {
+    -moz-transition-delay: 0.1s * $i ;
+    -webkit-transition-delay: 0.1s * $i ;
+    transition-delay: 0.1s * $i ;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| CSS Class Cols
+|--------------------------------------------------------------------------
+*/
+@for $i from 1 through 10 {
+	.cols-#{$i}{
+		@include percent($i);
+	}
+}
+
+/*
+|--------------------------------------------------------------------------
+| Cubic Bezier Collection
+|--------------------------------------------------------------------------
+*/
+.ease-in-quad {
+	@include transition-timing-function($ease-in-quad);
+}
+.ease-in-cubic {
+	@include transition-timing-function($ease-in-cubic);
+}
+.ease-in-quart {
+	@include transition-timing-function($ease-in-quart);
+}
+.ease-in-quint {
+	@include transition-timing-function($ease-in-quint);
+}
+.ease-in-sine {
+	@include transition-timing-function($ease-in-sine);
+}
+.ease-in-expo {
+	@include transition-timing-function($ease-in-expo);
+}
+.ease-in-circ {
+	@include transition-timing-function($ease-in-circ);
+}
+.ease-in-back {
+	@include transition-timing-function($ease-in-back);
+}
+.ease-out-quad {
+	@include transition-timing-function($ease-out-quad);
+}
+.ease-out-cubic {
+	@include transition-timing-function($ease-out-cubic);
+}
+.ease-out-quart {
+	@include transition-timing-function($ease-out-quart);
+}
+.ease-out-quint {
+	@include transition-timing-function($ease-out-quint);
+}
+.ease-out-sine {
+	@include transition-timing-function($ease-out-sine);
+}
+.ease-out-expo {
+	@include transition-timing-function($ease-out-expo);
+}
+.ease-out-circ {
+	@include transition-timing-function($ease-out-circ);
+}
+.ease-out-back {
+	@include transition-timing-function($ease-out-back);
+}
+.ease-in-out-quad {
+	@include transition-timing-function($ease-in-out-quad);
+}
+.ease-in-out-cubic {
+	@include transition-timing-function($ease-in-out-cubic);
+}
+.ease-in-out-quart {
+	@include transition-timing-function($ease-in-out-quart);
+}
+.ease-in-out-quint {
+	@include transition-timing-function($ease-in-out-quint);
+}
+.ease-in-out-sine {
+	@include transition-timing-function($ease-in-out-sine);
+}
+.ease-in-out-expo {
+	@include transition-timing-function($ease-in-out-expo);
+}
+.ease-in-out-circ {
+	@include transition-timing-function($ease-in-out-circ);
+}
+.ease-in-out-back {
+	@include transition-timing-function($ease-in-out-back);
+}
+
+/*
+|--------------------------------------------------------------------------
+| CSS Class Reset List
+|--------------------------------------------------------------------------
+*/
+.reset-list, .rl{
+	@include reset-list;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CSS Class Reset Float
+|--------------------------------------------------------------------------
+*/
+.reset-float, .rf{
+	@include reset-float;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CSS Class Reset Float
+|--------------------------------------------------------------------------
+*/
+.cl, .clearfix{
+	@include clearfix;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CSS Class Inline-block
+|--------------------------------------------------------------------------
+*/
+.ib, .i-b, .inline-block{
+	@include inline-block;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CSS Class Font Size
+|--------------------------------------------------------------------------
+*/
+.fw-thin, .fwt{
+	@include font-weight(thin);//200
+}
+.fw-normal, .fwn{
+	@include font-weight(normal);//400
+}
+.fw-semibold, .fws{
+	@include font-weight(semibold);//500
+}
+.fw-bold, .fwb{
+	@include font-weight(bold);//600
+}
+.fw-black, .fwb{
+	@include font-weight(black);//900
+}
+
+/*
+|--------------------------------------------------------------------------
+| CSS Class Absolute Block
+|--------------------------------------------------------------------------
+*/
+.absolute-block, .ab{
+	@include absolute-block;
+}
+.absolute-block-size, .abs{
+	@include absolute-block(true);
+}

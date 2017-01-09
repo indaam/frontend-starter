@@ -1,0 +1,71 @@
+/*
+|--------------------------------------------------------------------------
+| Flexslider Plugins 
+|--------------------------------------------------------------------------
+*/
+.flexslider{
+	position: relative;
+	.flex-control-nav,
+	.flex-direction-nav,
+	.slides{
+		@include reset-list;
+		li{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+		}
+	}
+
+	.flex-control-nav{
+		text-align: center;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 2;
+
+		li{
+			@include inline-block;
+			margin: 0;
+		}
+		a{
+			display: block;
+			text-indent: -9999px;
+			background-color: #fff;
+			width: 12px;
+			height: 12px;
+			cursor: pointer;
+			@include border-radius(12px);
+			&.flex-active{
+			}
+			&:hover{
+			}
+		}
+	}
+
+	.flex-direction-nav{
+		position: absolute;
+		top: 50%;
+		right: 0;
+		left: 0;
+		z-index: 2;
+		
+		.flex-prev,
+		.flex-next{
+			display: block;
+			position: absolute;
+			text-indent: -9999px;
+		}
+
+		.flex-prev{
+			left: 0;
+			@include fl;
+		}
+
+		.flex-next{
+			right: 0;
+			@include fr;
+		}
+	}
+}

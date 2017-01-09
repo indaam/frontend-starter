@@ -1,0 +1,86 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"><![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8 ie7" lang="en"><![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9 ie8" lang="en"><![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Index</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+		<!-- Place favicon.ico in the root directory -->
+		<!-- // <script src="//localhost:35729/livereload.js"></script> -->
+
+		<meta property="og:url" content="myContent"/>
+		<meta property="og:title" content="myTitle"/>
+		<meta property="og:image" content="myImage"/>
+		<meta property="og:site_name" content="My Site Name" />
+		<meta property="og:description" content="My Description"/>
+
+		<link rel="stylesheet" href="dist/css/style.css">
+
+		<script>
+			(function(){
+				var rc = /indaam|indam|localhost|file:/;
+				if ( rc.test(window.location.href) && ( window.location.protocol == 'http:' ) && (window.location.host == 'localhost') ) {
+					var jslivereload = document.createElement('script');
+					jslivereload.src = 'http://localhost:35729/livereload.js';
+					document.getElementsByTagName('head')[0].appendChild(jslivereload);
+				};
+			})();
+		</script>
+	<!--[if lt IE 9]>
+		<script src="src/js/helper/html5shiv.min.js"></script>
+		<script src="src/js/helper/nwmatcher-1.2.5-min.js"></script>
+		<script src="src/js/helper/selectivizr.js"></script>
+	<![endif]-->
+	</head>
+	<body>
+		<!--[if lt IE 8]>
+			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+
+		<div id="page" class="page site">
+			<header id="masthead" class="site-header header" role="banner">
+				<h1>Headerx</h1>
+			</header>
+			<!-- .header -->
+
+			<div id="content" class="site-content content">
+				<div id="primary" class="content-area">
+					<main id="main" class="site-main" role="main">
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, placeat?</p>
+					</main>
+					<!-- .site-main -->
+				</div>
+				<!-- .content-area -->
+			</div>
+			<!-- .site-content -->
+
+			<footer id="colophon" class="site-footer footer" role="contentinfo">
+				<div class="site-info">
+					<p>Footer</p>
+				</div>
+				<!-- .site-info -->
+			</footer>
+			<!-- .site-footer -->
+		</div>
+		<!-- .page .site -->
+		
+		<!-- DEVELOPMENT -->
+		<script src="src/libs/jQuery2/dist/jquery.min.js"></script>
+		<script src="src/libs/underscore/underscore-min.js"></script>
+		<script src="src/js/main.js"></script>
+
+		<!-- PRODUCTION -->
+		<!-- // <script src="dist/js/all.js"></script> -->
+
+	</body>
+</html>

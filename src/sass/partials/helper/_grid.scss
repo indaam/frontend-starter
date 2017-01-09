@@ -1,0 +1,151 @@
+/*
+|--------------------------------------------------------------------------
+| Responsive grid with px 
+| Helper:: http://gridcalculator.dk/ 
+|--------------------------------------------------------------------------
+*/
+// Grid Variable
+$Totalcolumns 			: 12; // Jumlah kolom
+$ColumnsWidth 			: 70; // Lebar kolom
+$GutterWidth 			: 30; // Jarak kolom
+
+//$TotalColumnsWidth 		: ($Totalcolumns * ($ColumnsWidth + $GutterWidth) - $GutterWidth);
+$TotalColumnsWidth 		: (($Totalcolumns * $ColumnsWidth) + ($Totalcolumns * $GutterWidth) - $GutterWidth);
+
+$PercentColumnsWidth 	: ($ColumnsWidth * 100%) / $TotalColumnsWidth;
+$PercentGuttersWidth 	: ($GutterWidth * 100%) / $TotalColumnsWidth;
+
+// Percent
+@function ColumnsWidthPercent($eCols)
+	{
+		$ColumnsWidthPercent: ($eCols * $PercentColumnsWidth) + (($eCols - 1)*$PercentGuttersWidth);
+		@return $ColumnsWidthPercent;
+	}
+
+	@function ColumnsPercent($eCols) {
+		$columns: ColumnsWidthPercent($eCols);
+		@return $columns;
+	}
+
+// Px
+@function ColumnsWidthPx($eCols)
+	{
+		$ColumnsWidthPx: ($eCols * $ColumnsWidth) + (($eCols - 1)*$GutterWidth);
+		@return $ColumnsWidthPx;
+	}
+
+	@function ColumnsPx($eCols) {
+		$columns: ColumnsWidthPx($eCols);
+		@return $columns+px;
+	}
+
+// Wrapper
+@mixin wrapper() {
+	@include pie-clearfix;
+	margin: 0 auto;
+	width: $TotalColumnsWidth+px;
+	*width: $TotalColumnsWidth+px;
+	max-width: 100%;
+	min-width: 380px;
+}
+
+
+// Set grid Percent & percent
+@mixin col(
+		$eCols: false,			// Set the count Columns(Integer)
+		$type : false,			// Use percent of px.
+		$float: false, 			// Use left or right or none.
+		$marginRight: false,	// Use zero for reset margin to none;
+		$showBackground: false 	// Use show or none 
+	) {
+		@if $eCols == false{
+				width: $PercentColumnsWidth;
+				width: $ColumnsWidth+px;
+		}
+		@if $eCols != false{
+			@if $type == px{
+				// Jika nilai parameter type TIDAK SAMA DENGAN px maka code diabawah akan dijalankan 
+				width: ColumnsPx($eCols);
+			}
+			@if $type == percent{
+				// Jika nilai parameter type TIDAK SAMA DENGAN px maka code diabawah akan dijalankan 
+				width: ColumnsPercent($eCols);
+			}
+		}
+
+		@if $type == false{
+			width: ColumnsPx($eCols);
+		}
+
+		@if $float == false{
+			//float: none;
+		}
+
+		@if $float != false{
+			@if $float == left{
+				@include float(left);
+			}
+
+			@if $float == right{
+				@include float(right);
+			}
+
+			@if $float == none{
+				float: none;
+			}
+		}
+
+
+		@if $type == px and $float != false and $marginRight != zero{
+			margin-right: $GutterWidth+px;
+		}
+
+
+		@if $type == percent and $float != false and $marginRight != zero{
+			margin-right: $PercentGuttersWidth;
+		}
+
+		@if $marginRight == zero{
+			margin-right: 0;
+		}
+
+		@if $showBackground == show{
+			min-height: 40px;
+			background-color: pink;
+
+		}
+	}
+
+// PushTo 
+@mixin pushto(
+		$eCols, 	 			// Set the count Column(Integer)
+		$LeftOrRight : false, 	// Use left or right. Default: 	right
+		$type : false 			// type percent of px. Default: percent
+	){
+
+		@if $type != px and $LeftOrRight != right{
+			right: ColumnsPercent($eCols);
+		}
+
+		@if $type != px and $LeftOrRight == right{
+			left: ColumnsPercent($eCols);
+		}
+
+		@if $type == px and $LeftOrRight != right{
+			right: ColumnsPx($eCols)+px;
+		}
+
+		@if $type == px and $LeftOrRight == right{
+			left: ColumnsPx($eCols)px;
+		}
+			position: relative;
+	}
+
+.container{
+	// @include wrapper;
+}
+
+@mixin width($width, $parentwidth:1170){
+	width: $width*1px;
+	width: $width*100 / $parentwidth * 1%;
+}

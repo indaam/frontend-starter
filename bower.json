@@ -1,0 +1,28 @@
+{
+  "name": "frontend-starter",
+  "private": "true",
+  "authors": [
+    "Indaam <indaam@gmail.com>"
+  ],
+  "description": "base started",
+  "main": "index.html",
+  "keywords": [
+    "frontend"
+  ],
+  "license": "MIT",
+  "homepage": "www.indaam.net",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery2": "jQuery#2",
+    "jQuery": "^3.1.1",
+    "underscore": "latest",
+    "jquery.ui": "latest"
+  }
+}
