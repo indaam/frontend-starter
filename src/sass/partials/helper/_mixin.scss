@@ -453,8 +453,77 @@
 		&:-ms-input-placeholder      {@content}  
 	}
 
-// @mixin animation($animation...) {
-//   $animation: if(length($animation) > 0, $animation, default-animation());
-//   @include animation-properties((animation: $animation));
-// }
+	// @mixin animation($animation...) {
+	//   $animation: if(length($animation) > 0, $animation, default-animation());
+	//   @include animation-properties((animation: $animation));
+	// }
 
+	@function strip-unit($num) {
+		@return $num / ($num * 0 + 1);
+	}
+
+/*
+|--------------------------------------------------------------------------
+| Mixin remsize
+|--------------------------------------------------------------------------
+*/
+	@mixin remsize($property, $values...) {
+		$max: length($values);
+		$pxValues: '';
+		$remValues: '';
+
+		@for $i from 1 through $max {
+			$value: strip-unit(nth($values, $i));
+			$pxValues: #{$pxValues + $value*16}px;
+
+			@if $i < $max {
+				$pxValues: #{$pxValues + " "};
+			}
+		} 
+
+		@for $i from 1 through $max {
+			$value: strip-unit(nth($values, $i));
+			$remValues: #{$remValues + $value}rem;
+
+			@if $i < $max {
+				$remValues: #{$remValues + " "};
+			}
+		} 
+
+		#{$property}: $pxValues; 
+		#{$property}: $remValues; 
+	}
+
+
+
+	/// Remove the unit of a length
+	/// @param {Number} $number - Number to remove unit from
+	/// @return {Number} - Unitless number
+	@function strip-unit($number) {
+		@if type-of($number) == 'number' and not unitless($number) {
+			@return $number / ($number * 0 + 1);
+		}
+
+		@return $number;
+	}
+
+/*
+|--------------------------------------------------------------------------
+| Font size to rem
+|--------------------------------------------------------------------------
+*/
+	@mixin fz($val){
+		font-size: $val;
+		font-size: (strip-unit($val) * 1) /strip-unit($base-font-size)+rem;
+	}
+
+/*
+|--------------------------------------------------------------------------
+| Property then value to rem
+|--------------------------------------------------------------------------
+*/
+	@mixin torm($prop, $val){
+		$r: (strip-unit($val) * 1) /strip-unit($base-font-size)+rem;
+		#{$prop}: $val;
+		#{$prop}: $r;
+	}

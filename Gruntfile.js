@@ -20,6 +20,7 @@ module.exports = function(grunt) {
                 src: [
                     "<%= pkg.source %>/libs/jQuery2/dist/jquery.min.js",
                     "<%= pkg.source %>/libs/underscore/underscore-min.js",
+                    "<%= pkg.source %>/js/tools.js",
                     "<%= pkg.source %>/js/main.js"
                     ],
                 dest: "<%= pkg.dist %>/js/all.js"

@@ -1,5 +1,5 @@
 var $ = jQuery.noConflict();
-var EA = function() {
+var APP = function() {
 	var page = {
 		window : $(window),
 		html   : $('html'),
@@ -39,7 +39,7 @@ var EA = function() {
 	};
 }();
 
-var EApp = function(){
+var MAINAPP = function(){
 	this.example = function(param){
 		var def;
 		arguments.length ? def = param : def = 1;
@@ -54,9 +54,9 @@ var EApp = function(){
 	}
 }
 
-var GetEApp = new EApp();
+var GetMAINAPP = new MAINAPP();
 
 $(document).ready(function() {
-	EA.init();
-	GetEApp.init();
+	APP.init();
+	GetMAINAPP.init();
 });
