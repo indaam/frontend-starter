@@ -1,51 +1,27 @@
-$targetFolder = "dist/camera/html"
-$targetFolderImg = "dist/camera/html/img"
-
-# COMPASS
-# Configuration: http://compass-style.org/help/tutorials/configuration-reference/
-
 # Require any additional compass plugins here.
-# ----------------------------------------------
-# require 'susy'
-# require 'blend-mode'
-# require 'zurb-foundation'
-# require 'sassy-buttons'
 
-# Can be :stand_alone or :rails. Defaults to :stand_alone
-# ----------------------------------------------
-project_type = :stand_alone
-
-# paths
 # Set this to the root of your project when deployed:
-# ----------------------------------------------
-http_path       = "/"
-css_dir         = $targetFolder
-sass_dir        = "src/sass/"
-images_dir      = $targetFolderImg
-javascripts_dir = "js"
-fonts_dir		= "fonts"
+
+http_path = "/"
+css_dir = "dist/css"
+sass_dir = "src/sass"
+images_dir = "src/images"
+javascripts_dir = "src/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
-# output option: nested, expanded, compact, compressed
-# ----------------------------------------------
-output_style = :nested
-
-# The environment mode.
-# Defaults to :production, can also be :development
-# Use :development to see line numbers, file names, etc
-# ----------------------------------------------
-environment = :production
-
-# To disable debugging comments that display the original location of your selectors. Uncomment:
-# ----------------------------------------------
-line_comments = true
-
+# output_style = :expanded or :nested or :compact or :compressed
+output_style = :compact
 # To enable relative paths to assets via compass helper functions. Uncomment:
-# ----------------------------------------------
+
 relative_assets = true
 
-# disable the asset cache buster
-# ----------------------------------------------
-asset_cache_buster :none
+# To disable debugging comments that display the original location of your selectors. Uncomment:
+line_comments = true
+# line_comments = false
 
-Sass::Script::Number.precision = 40
+
+# If you prefer the indented syntax, you might want to regenerate this
+# project again passing --syntax sass, or you can uncomment this:
+# preferred_syntax = :sass
+# and then run:
+# sass-convert -R --from scss --to sass sass scss && rm -rf sass && mv scss sass

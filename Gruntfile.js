@@ -1,85 +1,119 @@
-path = require('path');
-
 module.exports = function(grunt) {
-    /**
-    * Load Modules
-    */
-    grunt.loadNpmTasks('grunt-contrib-jade');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-compass');
-
-    
+    require("path");
+    grunt.loadNpmTasks("grunt-contrib-cssmin"), 
+    grunt.loadNpmTasks("grunt-contrib-uglify"), 
+    grunt.loadNpmTasks("grunt-contrib-concat"),
+    grunt.loadNpmTasks("grunt-contrib-watch"),
+    grunt.loadNpmTasks("css-mqpacker"),
     grunt.initConfig({
-        
-        /**
-        * Compile jade files in "src/template directory" to "dist" directory
+        pkg: grunt.file.readJSON("package.json"),
+        /*
+        ============ Concat: Merge File
         */
-        jade: {
-            compile: {
+        concat: {
+            options: {
+                stripBanners: true,
+                banner: "/*! <%= pkg.name %> - v<%= pkg.version %> */\n",
+                separator: '\n;',
+            },
+            all: {
+                src: [
+                    "<%= pkg.source %>/libs/jQuery2/dist/jquery.min.js",
+                    "<%= pkg.source %>/libs/underscore/underscore-min.js",
+                    "<%= pkg.source %>/js/main.js"
+                    ],
+                dest: "<%= pkg.dist %>/js/all.js"
+            }
+        },
+
+        /*
+        ============ uglify: Minify And beautifuly your codex
+        */
+        uglify: {
+            js_min: {
                 options: {
-                    pretty: true
+                    banner: '/*\nDeveloper: <%= pkg.dev %> \nName: <%= pkg.name %>\nVersion: <%= pkg.version %>\nLast Compile: <%= grunt.template.today("yyyy-mm-dd h:MM:ss") %> */\n',
+                    compress: {
+                        drop_console: true
+                    },
                 },
-                files: [{
-                    expand: true,
-                    cwd: 'src/html',
-                    src: ['*.jade'],
-                    dest: 'dist/camera/html',
-                    ext: '.html',
-                }]
+                files: [
+                    {
+                        expand: true,
+                        cwd: "<%= pkg.dist %>/js/",
+                        // src: [ "*.js", "!*.min.js" ],
+                        src: [ "*", "!*.beautify.js", "!*.min.js", "!*/**" ],
+                        // src: [ "*.js", "!*.beautify.js", "!*.min.js" ],
+                        dest: "<%= pkg.dist %>/js/",
+                        ext: ".min.js"
+                    },
+                ]
+            },
+        },
+        /*
+        ============ Sorting Media Query
+        */
+        css_mqpacker: {
+            options: {
+                // map: {
+                //   inline: false,
+                //   sourcesContent: false
+                // }
+                map: false
+            },
+            main: {
+                expand: true,
+                cwd: "<%= pkg.dist %>/css/",
+                src: [ "*.css", "!*.min.css", "!*.sort.css" ],
+                dest: "<%= pkg.dist %>/css/",
+                ext: ".sort.css"
             }
         },
-
-        /**
-        * Compass is awesome
+        /*
+        ============ cssmin: Minify css
         */
-
-        compass: {                  // Task
-          dist: {                   // Target
-            options: {              // Target options
-              config : "config.rb"
+        cssmin: {
+            options: {
+                banner: '/*\nDeveloper: <%= pkg.dev %> \nName: <%= pkg.name %>\nVersion: <%= pkg.version %>\nLast Compile: <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+                mediaMerging : true,
+                semanticMerging  : true,
+                shorthandCompacting  : true
+            },
+            minify: {
+                expand: true,
+                cwd: "<%= pkg.dist %>/css/",
+                // src: [ "*.css", "*.*.css", "!*.min.css" ],
+                src: [ "*.sort.css" ],
+                dest: "<%= pkg.dist %>/css/",
+                ext: ".min.css"
             }
-          }
         },
-        
-        /**
-        * Watches Jade file(s) changes and compile the changes
-        */
         watch: {
             options: {
                 livereload: true,
                 nospawn: true
             },
             css: {
-              files: ['src/sass/**/*'],
-              tasks: ['compass'],
+                files: [ "<%= pkg.dist %>/css/*"],
+                // files: [ "<%= pkg.dir %>/ori/sass/**/*" ],
+                // tasks: [ "compass" ]
+                // tasks: [ "newer:compass" ]
             },
-            templates: {
-                files: [
-                    'src/html/**/*'],
-                tasks: [
-                    'jade'],
-                options: {
-                    nospawn: true
-                }
-            }
+            js: {
+                files: [ "<%= pkg.source %>/js/**/*", "<%= pkg.source %>/libs/**/*" ],
+                // tasks: [ "newer:uglify" ]
+            },
+            html: {
+                files: [ "*.html"],
+                // tasks: [ "newer:uglify" ]
+            },
         }
-    })
-    
-    /**
-    * Compile jade file while on watch, but only the changed file being compiled.  
-    */
-    grunt.event.on('watch', function(action, filepath){
-        grunt.config(
-            ['jade', 'compile', 'files'], 
-            [{
-                src: filepath, dest: 'dist/' + path.basename(filepath, '.jade') + '.html'
-            }]
-        );
-    });
-    
-    /**
-    * Default task
-    */
-    grunt.registerTask('jalan', ['compass', 'jade', 'watch']);
+    }),
 
-}
+    grunt.registerTask("c",                 [ "concat" ]);
+    grunt.registerTask("u",                 [ "uglify" ]);
+    grunt.registerTask("csort",             [ "css_mqpacker" ]);
+    grunt.registerTask("cmin",              [ "cssmin" ]);
+    grunt.registerTask("w",                 [ "watch" ]);
+
+};
